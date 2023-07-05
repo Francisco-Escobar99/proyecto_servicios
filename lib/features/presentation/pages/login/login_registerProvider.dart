@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -100,7 +102,7 @@ class _RegisterProviderState extends State<RegisterProvider> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: Colors.transparent),
+                      borderSide: const BorderSide(color: Colors.transparent),
                     ),
                   ),
                 ),
@@ -125,7 +127,7 @@ class _RegisterProviderState extends State<RegisterProvider> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: Colors.transparent),
+                      borderSide: const BorderSide(color: Colors.transparent),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -203,7 +205,7 @@ class _RegisterProviderState extends State<RegisterProvider> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: Colors.transparent),
+                      borderSide: const BorderSide(color: Colors.transparent),
                     ),
                   ),
                 ),
@@ -234,7 +236,7 @@ class _RegisterProviderState extends State<RegisterProvider> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: Colors.transparent),
+                      borderSide: const BorderSide(color: Colors.transparent),
                     ),
                   ),
                 ),
@@ -283,7 +285,7 @@ class _RegisterProviderState extends State<RegisterProvider> {
                 //////////////////////////////////7
                 const SizedBox(height: 18),
                 Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                       top:
                           20), // Agrega un margen superior para separar el botón del contenido anterior
                   child: ElevatedButton(

@@ -57,7 +57,7 @@ class RegisterCustomer extends StatelessWidget {
                       fillColor: HexColor('#FFFFFF'),
                       filled: true,
                       hintStyle: TextStyle(
-                        color: Color(0xFF3B3936),
+                        color: const Color(0xFF3B3936),
                         fontSize: _responsiveTextSize(context, 18),
                         fontWeight: FontWeight.bold,
                       ),
@@ -71,7 +71,7 @@ class RegisterCustomer extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: Colors.transparent),
+                        borderSide: const BorderSide(color: Colors.transparent),
                       ),
                     ),
                   ),
@@ -83,7 +83,7 @@ class RegisterCustomer extends StatelessWidget {
                       fillColor: HexColor('#FFFFFF'),
                       filled: true,
                       hintStyle: TextStyle(
-                        color: Color(0xFF3B3936),
+                        color: const Color(0xFF3B3936),
                         fontSize: _responsiveTextSize(context, 18),
                         fontWeight: FontWeight.bold,
                       ),
@@ -97,7 +97,7 @@ class RegisterCustomer extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: Colors.transparent),
+                        borderSide: const BorderSide(color: Colors.transparent),
                       ),
                     ),
                   ),
@@ -109,7 +109,7 @@ class RegisterCustomer extends StatelessWidget {
                       fillColor: HexColor('#FFFFFF'),
                       filled: true,
                       hintStyle: TextStyle(
-                        color: Color(0xFF3B3936),
+                        color: const Color(0xFF3B3936),
                         fontSize: _responsiveTextSize(context, 18),
                         fontWeight: FontWeight.bold,
                       ),
@@ -123,7 +123,7 @@ class RegisterCustomer extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: Colors.transparent),
+                        borderSide: const BorderSide(color: Colors.transparent),
                       ),
                     ),
                   ),
@@ -136,7 +136,7 @@ class RegisterCustomer extends StatelessWidget {
                       fillColor: HexColor('#FFFFFF'),
                       filled: true,
                       hintStyle: TextStyle(
-                        color: Color(0xFF3B3936),
+                        color: const Color(0xFF3B3936),
                         fontSize: _responsiveTextSize(context, 18),
                         fontWeight: FontWeight.bold,
                       ),
@@ -150,7 +150,7 @@ class RegisterCustomer extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: Colors.transparent),
+                        borderSide: const BorderSide(color: Colors.transparent),
                       ),
                     ),
                   ),
@@ -163,7 +163,7 @@ class RegisterCustomer extends StatelessWidget {
                       fillColor: HexColor('#FFFFFF'),
                       filled: true,
                       hintStyle: TextStyle(
-                        color: Color(0xFF3B3936),
+                        color: const Color(0xFF3B3936),
                         fontSize: _responsiveTextSize(context, 18),
                         fontWeight: FontWeight.bold,
                       ),
@@ -177,13 +177,13 @@ class RegisterCustomer extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: Colors.transparent),
+                        borderSide: const BorderSide(color: Colors.transparent),
                       ),
                       suffixIcon: GestureDetector(
                         onTap: () {
                           // Cambiar la visibilidad de la contraseña
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.visibility,
                           color: Colors.grey,
                         ),
@@ -192,7 +192,7 @@ class RegisterCustomer extends StatelessWidget {
                   ),
                   SizedBox(height: _responsiveHeight(context, 0.04)),
                   Padding(
-                    padding: EdgeInsets.only(left: 10, top: 137),
+                    padding: const EdgeInsets.only(left: 10, top: 137),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -201,6 +201,7 @@ class RegisterCustomer extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
+                        // ignore: deprecated_member_use
                         primary: HexColor('#3B3936'),
                         // Color de fondo del botón
                         // ignore: deprecated_member_use
@@ -223,7 +224,7 @@ class RegisterCustomer extends StatelessWidget {
                           ),
                         ),
                       ),
-                      child: Text('Registrarse'),
+                      child: const Text('Registrarse'),
                     ),
                   )
                 ],
