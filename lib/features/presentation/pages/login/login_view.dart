@@ -9,6 +9,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  // ignore: prefer_final_fields
   TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
 
