@@ -175,7 +175,7 @@ class _RegisterProviderState extends State<RegisterProvider> {
                     ),
                   ],
                   onChanged: (value) {
-                    // Aquí puedes manejar el cambio de valor seleccionado
+                    // Aquí se puede  manejar el cambio de valor seleccionado
                   },
                 ),
                 const SizedBox(height: 20),

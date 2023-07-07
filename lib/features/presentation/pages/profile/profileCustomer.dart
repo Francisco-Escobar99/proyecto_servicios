@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
+
 import '../appBar/app_bar.dart';
-import '../login/login_welcome.dart';
-//import '../profile/profileCustomer.dart';
 
-class ViewMain extends StatefulWidget {
-  @override
-  _ViewMainState createState() => _ViewMainState();
-}
-
-class _ViewMainState extends State<ViewMain> {
-  GlobalKey<ScaffoldState> _scaffoldKey =
-      GlobalKey<ScaffoldState>(); //controla la accion de abrir y cerrar el menu
+class CustomerProfile extends StatelessWidget {
+  const CustomerProfile({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      backgroundColor: const Color(0xFFE5E5E5),
+      backgroundColor: Color(0xFFE5E5E5),
       appBar: CustomAppBar(),
       drawer: Drawer(
         child: ListView(
@@ -68,26 +60,56 @@ class _ViewMainState extends State<ViewMain> {
           ],
         ),
       ),
-      body: Center(
+      body: const SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
-              'Vista de servicios',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: EdgeInsets.only(left: 16.0, top: 16.0),
+              child: Text(
+                "Mi cuenta",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'IstokWeb',
+                  fontSize: 18.0,
+                ),
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginWelcome()),
-                );
-              },
-              child: const Text('Cerrar'),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ClipOval(
+                      child: CircleAvatar(
+                        backgroundColor: Color(0xFFE5E5E5),
+                        radius: 70,
+                        backgroundImage: AssetImage('assets/perfilUsuario.png'),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Nombre de usuario",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'IstokWeb',
+                        fontSize: 18.0,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      "Cliente",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'IstokWeb',
+                        fontSize: 18.0,
+                        color: Color(0xFF707070),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
