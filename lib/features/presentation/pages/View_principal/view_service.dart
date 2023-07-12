@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../appBar/app_bar.dart';
 import '../login/login_welcome.dart';
-//import '../profile/profileCustomer.dart';
 
 class ViewMain extends StatefulWidget {
   @override
@@ -9,8 +8,8 @@ class ViewMain extends StatefulWidget {
 }
 
 class _ViewMainState extends State<ViewMain> {
-  GlobalKey<ScaffoldState> _scaffoldKey =
-      GlobalKey<ScaffoldState>(); //controla la accion de abrir y cerrar el menu
+  int _counter = 0;
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,45 +21,53 @@ class _ViewMainState extends State<ViewMain> {
         child: ListView(
           children: [
             ListTile(
-              title: const Text('• Cuidado personal',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'IstokWeb',
-                    fontSize: 16.0,
-                  )),
+              title: const Text(
+                '• Cuidado personal',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'IstokWeb',
+                  fontSize: 16.0,
+                ),
+              ),
               onTap: () {
                 // Acción al seleccionar 'Cuidado personal'
               },
             ),
             ListTile(
-              title: const Text('• Salud',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'IstokWeb',
-                    fontSize: 16.0,
-                  )),
+              title: const Text(
+                '• Salud',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'IstokWeb',
+                  fontSize: 16.0,
+                ),
+              ),
               onTap: () {
                 // Acción al seleccionar 'Salud'
               },
             ),
             ListTile(
-              title: const Text('• Servicio vehicular',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'IstokWeb',
-                    fontSize: 16.0,
-                  )),
+              title: const Text(
+                '• Servicio vehicular',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'IstokWeb',
+                  fontSize: 16.0,
+                ),
+              ),
               onTap: () {
                 // Acción al seleccionar 'Servicio vehicular'
               },
             ),
             ListTile(
-              title: const Text('• Asistencia del hogar',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'IstokWeb',
-                    fontSize: 16.0,
-                  )),
+              title: const Text(
+                '• Asistencia del hogar',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'IstokWeb',
+                  fontSize: 16.0,
+                ),
+              ),
               onTap: () {
                 // Acción al seleccionar 'Asistencia del hogar'
               },
@@ -68,29 +75,61 @@ class _ViewMainState extends State<ViewMain> {
           ],
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Vista de servicios',
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(height: 0),
+          Container(
+            padding: const EdgeInsets.all(22.0),
+            child: const TextField(
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: 'Buscar...',
+                contentPadding: EdgeInsets.zero,
+                filled: true,
+                fillColor: Color(0xFFFFFFFF),
+                prefixIcon: Padding(
+                  padding: EdgeInsets.only(left: 0),
+                  child: Icon(Icons.search),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30.0),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 239),
+            child: Text(
+              'Servicios del día',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 17,
+                fontFamily: 'istok_web',
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginWelcome()),
-                );
-              },
-              child: const Text('Cerrar'),
+          ),
+          const SizedBox(height: 165),
+          const Text(
+            'Vista de servicios',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
             ),
-          ],
-        ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginWelcome()),
+              );
+            },
+            child: const Text('Cerrar'),
+          ),
+        ],
       ),
     );
   }

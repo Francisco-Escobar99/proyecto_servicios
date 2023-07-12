@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../appBar/app_bar.dart';
+import '../../appBar/app_bar.dart';
 
-class ProviderProfile extends StatelessWidget {
-  const ProviderProfile({Key? key});
+class CustomerProfile extends StatelessWidget {
+  const CustomerProfile({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,13 +99,89 @@ class ProviderProfile extends StatelessWidget {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      "Proveedor",
+                      "Cliente",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: 'IstokWeb',
                         fontSize: 18.0,
                         color: Color(0xFF707070),
                       ),
+                    ),
+                    SizedBox(height: 49),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(left: 110.0),
+                          child: Text(
+                            "Cambiar nombre",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'IstokWeb',
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(Icons.lock),
+                      ],
+                    ),
+                    SizedBox(height: 25),
+                      Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(left: 110.0),
+                          child: Text(
+                            "Cambiar foto del perfil",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'IstokWeb',
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(Icons.lock),
+                      ],
+                    ),
+                    SizedBox(height: 25),
+                      Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(left: 110.0),
+                          child: Text(
+                            "Cambiar contraseña",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'IstokWeb',
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(Icons.lock),
+                      ],
+                    ),
+                    SizedBox(height: 25),
+                      Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(left: 110.0),
+                          child: Text(
+                            "Cambiar direccion",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'IstokWeb',
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(Icons.lock),
+                      ],
                     ),
                   ],
                 ),

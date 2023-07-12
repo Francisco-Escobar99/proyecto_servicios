@@ -1,10 +1,37 @@
 import 'package:flutter/material.dart';
+import '../View_principal/view_service.dart';
+import '../profile/Provider_/profileProvider.dart';
 
-import '../profile/profileCustomer.dart';
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
+  @override
+  _CustomAppBarState createState() => _CustomAppBarState();
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  bool _isProfileView = true;
+
+  void _toggleView() {
+    setState(() {
+      _isProfileView = !_isProfileView;
+    });
+  }
+
+  void _navigateToView() {
+    if (_isProfileView) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ProviderProfile()),
+      ).then((value) => _toggleView());
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ViewMain()),
+      ).then((value) => _toggleView());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             'assets/botonCuadrado.png',
             fit: BoxFit.contain,
           ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CustomerProfile()),
-            );
-          },
+          onPressed: _navigateToView,
         ),
       ],
       flexibleSpace: Align(
