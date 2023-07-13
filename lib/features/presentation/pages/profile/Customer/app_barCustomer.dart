@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../View_principal/view_service.dart';
-import '../profile/Provider_/profileProvider.dart';
+import 'profileCustomer.dart';
+import 'view_main_customer.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
@@ -23,12 +23,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
     if (_isProfileView) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ProviderProfile()),
+        MaterialPageRoute(builder: (context) => const CustomerProfile()),
       ).then((value) => _toggleView());
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ViewMain()),
+        MaterialPageRoute(builder: (context) => View_mainCustomer()),
       ).then((value) => _toggleView());
     }
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../appBar/app_bar.dart';
+import 'app_barCustomer.dart';
 
 class CustomerProfile extends StatelessWidget {
   const CustomerProfile({Key? key});

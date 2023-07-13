@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../View_principal/view_service.dart';
+import '../profile/Provider_/view_main_provider.dart';
 
 class RegisterProvider extends StatefulWidget {
   const RegisterProvider({Key? key}) : super(key: key);

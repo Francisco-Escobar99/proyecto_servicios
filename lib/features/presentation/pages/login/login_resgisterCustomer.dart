@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../View_principal/view_service.dart';
+import '../profile/Customer/view_main_customer.dart';
+
 
 class RegisterCustomer extends StatelessWidget {
   const RegisterCustomer({Key? key}) : super(key: key);
@@ -10,8 +11,8 @@ class RegisterCustomer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DecoratedBox(
-        decoration: BoxDecoration(
-          color: const Color(0xFFE5E5E5),
+        decoration: const BoxDecoration(
+          color: Color(0xFFE5E5E5),
         ),
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -197,7 +198,7 @@ class RegisterCustomer extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ViewMain()),
+                          MaterialPageRoute(builder: (context) => View_mainCustomer()),
                         );
                       },
                       style: ElevatedButton.styleFrom(

@@ -1,7 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import '../../appBar/app_bar.dart';
+import 'app_barProvider.dart';
 import 'create_service.dart';
 
 class ProviderProfile extends StatelessWidget {
@@ -11,7 +11,7 @@ class ProviderProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFE5E5E5),
-      appBar: CustomAppBar(),
+      appBar: provider_appbar(),
       drawer: Drawer(
         child: ListView(
           children: [

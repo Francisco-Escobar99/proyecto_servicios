@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_movil/features/presentation/pages/View_principal/view_service.dart';
-import '../../appBar/app_bar.dart';
+import 'package:proyecto_movil/features/presentation/pages/profile/Provider_/view_main_provider.dart';
+import 'app_barProvider.dart';
+
 
 
 class service_create extends StatelessWidget {
@@ -10,7 +11,7 @@ class service_create extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFE5E5E5),
-      appBar: CustomAppBar(),
+      appBar: provider_appbar(),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

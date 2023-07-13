@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../View_principal/view_service.dart';
+import '../profile/Provider_/view_main_provider.dart';
 
 class LoginView extends StatefulWidget {
   @override

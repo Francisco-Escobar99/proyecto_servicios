@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../appBar/app_bar.dart';
-import '../login/login_welcome.dart';
+import '../../login/login_welcome.dart';
+import 'app_barProvider.dart';
 
 class ViewMain extends StatefulWidget {
   @override
@@ -8,7 +8,6 @@ class ViewMain extends StatefulWidget {
 }
 
 class _ViewMainState extends State<ViewMain> {
-  int _counter = 0;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -16,7 +15,7 @@ class _ViewMainState extends State<ViewMain> {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: const Color(0xFFE5E5E5),
-      appBar: CustomAppBar(),
+      appBar: provider_appbar(),
       drawer: Drawer(
         child: ListView(
           children: [
