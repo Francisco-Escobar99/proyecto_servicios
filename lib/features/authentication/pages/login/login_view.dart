@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
-
-import '../View_principal/view_service.dart';
+import 'package:proyecto_movil/features/authentication/pages/profile/Customer/view_main_customer.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -9,6 +7,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  // ignore: prefer_final_fields
   TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
 
@@ -61,7 +60,7 @@ class _LoginViewState extends State<LoginView> {
                       textAlign:
                           TextAlign.start, // Centra el texto a la izquierda
                       decoration: InputDecoration(
-                        hintText: 'Usuario',
+                        hintText: 'Email',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
                           borderSide: BorderSide.none, // Sin borde
@@ -133,7 +132,7 @@ class _LoginViewState extends State<LoginView> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ViewMain()),
+                          MaterialPageRoute(builder: (context) => View_mainCustomer()),
                         );
                       },
                       style: ElevatedButton.styleFrom(

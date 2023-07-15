@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'login_register.dart';
+import '../login/login_resgisterBase.dart';
 import 'login_view.dart';
 
 class LoginWelcome extends StatelessWidget {
@@ -15,18 +14,20 @@ class LoginWelcome extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Spacer(),
+            const Spacer(),
             Image.asset(
               'assets/logo.png',
               width: MediaQuery.of(context).size.width * 0.6,
               height: MediaQuery.of(context).size.height * 0.3,
             ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
-              onPressed: () {Navigator.push(
+              onPressed: () {
+                Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => LoginView()),
-                );},
+                );
+              },
               // ignore: sort_child_properties_last
               child: const Text(
                 'Iniciar sesión',
@@ -47,10 +48,13 @@ class LoginWelcome extends StatelessWidget {
             ),
             const SizedBox(height: 45.0), // Espacio de 45 entre los botones
             ElevatedButton(
-              onPressed: () {Navigator.push(
+              onPressed: () {
+                Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginRegister()),
-                );},
+                  MaterialPageRoute(
+                      builder: (context) => const RegisterCustomer()),
+                );
+              },
               // ignore: sort_child_properties_last
               child: const Text(
                 'Crear una cuenta',
@@ -69,7 +73,7 @@ class LoginWelcome extends StatelessWidget {
                 minimumSize: const Size(321, 43),
               ),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),

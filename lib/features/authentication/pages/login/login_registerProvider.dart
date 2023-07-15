@@ -1,7 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-import '../View_principal/view_service.dart';
+import '../profile/Provider_/view_main_provider.dart';
 
 class RegisterProvider extends StatefulWidget {
   const RegisterProvider({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class RegisterProvider extends StatefulWidget {
 }
 
 class _RegisterProviderState extends State<RegisterProvider> {
-  bool _obscureText = true;
+  final bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +25,7 @@ class _RegisterProviderState extends State<RegisterProvider> {
             child: Column(
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(left: 20, top: 37),
-                  child: Text(
-                    'Te damos la bienvenida',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 34, top: 37),
+                  padding: EdgeInsets.only(left: 1, top: 37),
                   child: Text(
                     'Cuéntanos de tu negocio:',
                     style: TextStyle(
@@ -77,6 +67,7 @@ class _RegisterProviderState extends State<RegisterProvider> {
                 ), //////////////////////////////////////////////////////
                 const SizedBox(height: 24),
                 TextFormField(
+                  autovalidateMode: AutovalidateMode.disabled,
                   decoration: InputDecoration(
                     hintText: 'RFC',
                     fillColor: HexColor('#FFFFFF'),
@@ -100,7 +91,7 @@ class _RegisterProviderState extends State<RegisterProvider> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: Colors.transparent),
+                      borderSide: const BorderSide(color: Colors.transparent),
                     ),
                   ),
                 ),
@@ -125,7 +116,7 @@ class _RegisterProviderState extends State<RegisterProvider> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: Colors.transparent),
+                      borderSide: const BorderSide(color: Colors.transparent),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -173,13 +164,35 @@ class _RegisterProviderState extends State<RegisterProvider> {
                     ),
                   ],
                   onChanged: (value) {
-                    // Aquí puedes manejar el cambio de valor seleccionado
+                    // Aquí se puede  manejar el cambio de valor seleccionado
                   },
                 ),
                 const SizedBox(height: 20),
+                const Padding(
+                  padding: EdgeInsets.only(left: 1, top: 27),
+                  child: Text(
+                    'Cuentanos cual es tu giro:',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 5),
+                const Padding(
+                  padding: EdgeInsets.only(left: 1, top: 17),
+                  child: Text(
+                    'Odontologia, enfermeria, mecanica, cerrajeria...',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 107, 107, 107),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
                 TextFormField(
-                  obscureText: _obscureText,
-                  autovalidateMode: AutovalidateMode.disabled,
                   decoration: InputDecoration(
                     hintText: 'Especifica tu giro',
                     fillColor: HexColor('#FFFFFF'),
@@ -203,87 +216,14 @@ class _RegisterProviderState extends State<RegisterProvider> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  obscureText: _obscureText,
-                  autovalidateMode: AutovalidateMode.disabled,
-                  decoration: InputDecoration(
-                    hintText: 'Contraseña',
-                    fillColor: HexColor('#FFFFFF'),
-                    filled: true,
-                    hintStyle: const TextStyle(
-                      color: Color(0xFF3B3936),
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 14,
-                      horizontal: 20,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: HexColor('#FFFFFF')),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: HexColor('#FFFFFF')),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 18),
-                TextFormField(
-                  obscureText: _obscureText,
-                  autovalidateMode: AutovalidateMode.disabled,
-                  decoration: InputDecoration(
-                    hintText: 'Repetir contraseña',
-                    fillColor: HexColor('#FFFFFF'),
-                    filled: true,
-                    hintStyle: const TextStyle(
-                      color: Color(0xFF3B3936),
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 14,
-                      horizontal: 20,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: HexColor('#FFFFFF')),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: HexColor('#FFFFFF')),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    suffixIcon: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _obscureText = !_obscureText;
-                        });
-                      },
-                      child: Icon(
-                        _obscureText ? Icons.visibility : Icons.visibility_off,
-                        color: Colors.grey,
-                      ),
+                      borderSide: const BorderSide(color: Colors.transparent),
                     ),
                   ),
                 ),
                 //////////////////////////////////7
                 const SizedBox(height: 18),
                 Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                       top:
                           20), // Agrega un margen superior para separar el botón del contenido anterior
                   child: ElevatedButton(
