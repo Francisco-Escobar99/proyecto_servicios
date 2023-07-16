@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../profile/Customer/view_main_customer.dart';
-
+import 'login_selectRole.dart';
 
 class RegisterCustomer extends StatelessWidget {
   const RegisterCustomer({Key? key}) : super(key: key);
@@ -80,7 +79,7 @@ class RegisterCustomer extends StatelessWidget {
                   TextFormField(
                     autovalidateMode: AutovalidateMode.disabled,
                     decoration: InputDecoration(
-                      hintText: 'Correo electrónico',
+                      hintText: 'Apellidos',
                       fillColor: HexColor('#FFFFFF'),
                       filled: true,
                       hintStyle: TextStyle(
@@ -106,7 +105,33 @@ class RegisterCustomer extends StatelessWidget {
                   TextFormField(
                     autovalidateMode: AutovalidateMode.disabled,
                     decoration: InputDecoration(
-                      hintText: 'Dirección',
+                      hintText: 'Email',
+                      fillColor: HexColor('#FFFFFF'),
+                      filled: true,
+                      hintStyle: TextStyle(
+                        color: const Color(0xFF3B3936),
+                        fontSize: _responsiveTextSize(context, 18),
+                        fontWeight: FontWeight.bold,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: HexColor('#FFFFFF')),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: HexColor('#FFFFFF')),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(color: Colors.transparent),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: _responsiveHeight(context, 0.02)),
+                  TextFormField(
+                    autovalidateMode: AutovalidateMode.disabled,
+                    decoration: InputDecoration(
+                      hintText: 'Numero de telefono',
                       fillColor: HexColor('#FFFFFF'),
                       filled: true,
                       hintStyle: TextStyle(
@@ -193,12 +218,12 @@ class RegisterCustomer extends StatelessWidget {
                   ),
                   SizedBox(height: _responsiveHeight(context, 0.04)),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 137),
+                    padding: const EdgeInsets.only(left: 10, top: 90),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => View_mainCustomer()),
+                          MaterialPageRoute(builder: (context) => Login_selectRole()),
                         );
                       },
                       style: ElevatedButton.styleFrom(

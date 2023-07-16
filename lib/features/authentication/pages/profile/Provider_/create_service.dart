@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_movil/features/presentation/pages/profile/Provider_/view_main_provider.dart';
 import 'app_barProvider.dart';
-
-
+import 'view_main_provider.dart';
 
 class service_create extends StatelessWidget {
   const service_create({super.key});

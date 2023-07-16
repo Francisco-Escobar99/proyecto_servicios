@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'profileCustomer.dart';
-import 'view_main_customer.dart';
+import '../Provider_/view_main_provider.dart';
+import '../Provider_/profileProvider.dart';
 
-class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
+class provider_appbar extends StatefulWidget implements PreferredSizeWidget {
   @override
-  _CustomAppBarState createState() => _CustomAppBarState();
+  _provider_appbarState createState() => _provider_appbarState();
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-class _CustomAppBarState extends State<CustomAppBar> {
+class _provider_appbarState extends State<provider_appbar> {
   bool _isProfileView = true;
 
   void _toggleView() {
@@ -23,12 +23,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
     if (_isProfileView) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const CustomerProfile()),
+        MaterialPageRoute(builder: (context) => const ProviderProfile()),
       ).then((value) => _toggleView());
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => View_mainCustomer()),
+        MaterialPageRoute(builder: (context) => ViewMain()),
       ).then((value) => _toggleView());
     }
   }
@@ -40,7 +40,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       elevation: 0,
       leading: IconButton(
         icon: const Icon(
-          Icons.menu,
+          Icons.density_medium,
           color: Colors.black,
         ),
         onPressed: () {
@@ -49,18 +49,25 @@ class _CustomAppBarState extends State<CustomAppBar> {
       ),
       actions: [
         IconButton(
-          icon: Image.asset(
-            'assets/botonCuadrado.png',
-            fit: BoxFit.contain,
+          icon: const Icon(
+            Icons.more_vert,
+            color: Colors.black,
+            size: 32,
           ),
           onPressed: _navigateToView,
         ),
       ],
       flexibleSpace: Align(
         alignment: Alignment.center,
-        child: Image.asset(
-          'assets/logo.png',
-          fit: BoxFit.cover,
+        child: SizedBox(
+          width: 140,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: Image.asset(
+              'assets/logoL.png',
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );

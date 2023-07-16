@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:proyecto_movil/features/authentication/pages/profile/Customer/view_main_customer.dart';
 import 'login_registerProvider.dart';
-import 'login_resgisterCustomer.dart';
 
-class LoginRegister extends StatefulWidget {
+class Login_selectRole extends StatefulWidget {
   @override
-  _LoginRegisterState createState() => _LoginRegisterState();
+  _Login_selectRole createState() => _Login_selectRole();
 }
 
-class _LoginRegisterState extends State<LoginRegister> {
+class _Login_selectRole extends State<Login_selectRole> {
   final _formKey = GlobalKey<FormState>();
   String? selectedRole;
   bool isButtonEnabled = false;
@@ -141,16 +140,14 @@ class _LoginRegisterState extends State<LoginRegister> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            const RegisterCustomer(),
+                                        builder: (context) => View_mainCustomer(),
                                       ),
                                     );
                                   } else if (selectedRole == 'proveedor') {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            const RegisterProvider(),
+                                        builder: (context) => const RegisterProvider(),
                                       ),
                                     );
                                   }

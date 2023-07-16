@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../profile/Provider_/view_main_provider.dart';
+import 'package:proyecto_movil/features/authentication/pages/profile/Customer/view_main_customer.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -61,7 +60,7 @@ class _LoginViewState extends State<LoginView> {
                       textAlign:
                           TextAlign.start, // Centra el texto a la izquierda
                       decoration: InputDecoration(
-                        hintText: 'Usuario',
+                        hintText: 'Email',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
                           borderSide: BorderSide.none, // Sin borde
@@ -133,7 +132,7 @@ class _LoginViewState extends State<LoginView> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ViewMain()),
+                          MaterialPageRoute(builder: (context) => View_mainCustomer()),
                         );
                       },
                       style: ElevatedButton.styleFrom(

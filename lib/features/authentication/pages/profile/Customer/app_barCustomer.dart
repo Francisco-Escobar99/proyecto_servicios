@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import '../Provider_/view_main_provider.dart';
-import '../Provider_/profileProvider.dart';
+import 'profileCustomer.dart';
+import 'view_main_customer.dart';
 
-class provider_appbar extends StatefulWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
-  _provider_appbarState createState() => _provider_appbarState();
+  _CustomAppBarState createState() => _CustomAppBarState();
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-class _provider_appbarState extends State<provider_appbar> {
-   bool _isProfileView = true;
+class _CustomAppBarState extends State<CustomAppBar> {
+  bool _isProfileView = true;
 
-void _toggleView() {
+  void _toggleView() {
     setState(() {
       _isProfileView = !_isProfileView;
     });
@@ -23,17 +23,15 @@ void _toggleView() {
     if (_isProfileView) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ProviderProfile()),
+        MaterialPageRoute(builder: (context) => const CustomerProfile()),
       ).then((value) => _toggleView());
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ViewMain()),
+        MaterialPageRoute(builder: (context) => View_mainCustomer()),
       ).then((value) => _toggleView());
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +40,7 @@ void _toggleView() {
       elevation: 0,
       leading: IconButton(
         icon: const Icon(
-          Icons.menu,
+          Icons.density_medium,
           color: Colors.black,
         ),
         onPressed: () {
@@ -51,18 +49,25 @@ void _toggleView() {
       ),
       actions: [
         IconButton(
-          icon: Image.asset(
-            'assets/botonCuadrado.png',
-            fit: BoxFit.contain,
+          icon: const Icon(
+            Icons.more_vert,
+            color: Colors.black,
+            size: 32,
           ),
           onPressed: _navigateToView,
         ),
       ],
       flexibleSpace: Align(
         alignment: Alignment.center,
-        child: Image.asset(
-          'assets/logo.png',
-          fit: BoxFit.cover,
+        child: SizedBox(
+          width: 140,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: Image.asset(
+              'assets/logoL.png',
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );
