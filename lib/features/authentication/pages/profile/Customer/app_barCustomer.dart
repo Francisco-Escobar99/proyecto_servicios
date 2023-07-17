@@ -28,7 +28,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => View_mainCustomer()),
+        MaterialPageRoute(builder: (context) => const ViewMainCustomer()),
       ).then((value) => _toggleView());
     }
   }

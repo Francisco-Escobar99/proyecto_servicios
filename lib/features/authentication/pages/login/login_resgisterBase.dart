@@ -10,10 +10,10 @@ class RegisterCustomer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DecoratedBox(
-        decoration: BoxDecoration(
-          color: const Color(0xFFE5E5E5),
+        decoration: const BoxDecoration(
+          color: Color(0xFFE5E5E5),
         ),
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
@@ -23,7 +23,7 @@ class RegisterCustomer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 20, top: 37),
+                    padding: const EdgeInsets.only(left: 20, top: 37),
                     child: Text(
                       'Te damos la bienvenida...',
                       style: TextStyle(

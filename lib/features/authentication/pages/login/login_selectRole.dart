@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_movil/features/authentication/pages/profile/Customer/view_main_customer.dart';
 import 'login_registerProvider.dart';
+import '../profile/Customer/view_main_customer.dart';
 
 class Login_selectRole extends StatefulWidget {
   @override
@@ -140,14 +140,16 @@ class _Login_selectRole extends State<Login_selectRole> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => View_mainCustomer(),
+                                        builder: (context) =>
+                                            const ViewMainCustomer(),
                                       ),
                                     );
                                   } else if (selectedRole == 'proveedor') {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const RegisterProvider(),
+                                        builder: (context) =>
+                                            const RegisterProvider(),
                                       ),
                                     );
                                   }

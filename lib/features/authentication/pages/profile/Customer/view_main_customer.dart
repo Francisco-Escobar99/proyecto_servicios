@@ -1,75 +1,21 @@
 import 'package:flutter/material.dart';
 import 'app_barCustomer.dart';
 import '../../login/login_welcome.dart';
+class ViewMainCustomer extends StatelessWidget {
+  const ViewMainCustomer({Key? key}) : super(key: key);
 
-class View_mainCustomer extends StatefulWidget {
-  @override
-  _View_mainCustomerState createState() => _View_mainCustomerState();
-}
-
-class _View_mainCustomerState extends State<View_mainCustomer> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       key: _scaffoldKey,
       backgroundColor: const Color(0xFFE5E5E5),
       appBar: CustomAppBar(),
       drawer: Drawer(
         child: ListView(
           children: [
-            ListTile(
-              title: const Text(
-                '• Cuidado personal',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'IstokWeb',
-                  fontSize: 16.0,
-                ),
-              ),
-              onTap: () {
-                // Acción al seleccionar 'Cuidado personal'
-              },
-            ),
-            ListTile(
-              title: const Text(
-                '• Salud',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'IstokWeb',
-                  fontSize: 16.0,
-                ),
-              ),
-              onTap: () {
-                // Acción al seleccionar 'Salud'
-              },
-            ),
-            ListTile(
-              title: const Text(
-                '• Servicio vehicular',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'IstokWeb',
-                  fontSize: 16.0,
-                ),
-              ),
-              onTap: () {
-                // Acción al seleccionar 'Servicio vehicular'
-              },
-            ),
-            ListTile(
-              title: const Text(
-                '• Asistencia del hogar',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'IstokWeb',
-                  fontSize: 16.0,
-                ),
-              ),
-              onTap: () {
-                // Acción al seleccionar 'Asistencia del hogar'
-              },
-            ),
+            buildDrawerListItem('Cuidado personal'),
+            buildDrawerListItem('Salud'),
+            buildDrawerListItem('Servicio vehicular'),
+            buildDrawerListItem('Asistencia del hogar'),
           ],
         ),
       ),
@@ -110,6 +56,28 @@ class _View_mainCustomerState extends State<View_mainCustomer> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              children: [
+                buildServiceWidget(
+                  'User.png',
+                  'Barber Alfa',
+                  'Cuidado personal',
+                  'Estilista',
+                  '4.2',
+                ),
+                const SizedBox(width: 80),
+                buildServiceWidget(
+                  'User2.png',
+                  'C. D. Bere',
+                  'Salud',
+                  'Dentista',
+                  '4.8',
+                ),
+              ],
+            ),
+          ),
           const SizedBox(height: 165),
           const Text(
             'Vista de servicios',
@@ -126,6 +94,160 @@ class _View_mainCustomerState extends State<View_mainCustomer> {
               );
             },
             child: const Text('Cerrar'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildDrawerListItem(String title) {
+    return ListTile(
+      title: Text(
+        '• $title',
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontFamily: 'IstokWeb',
+          fontSize: 16.0,
+        ),
+      ),
+      onTap: () {
+        // Acción al seleccionar el elemento del Drawer
+      },
+    );
+  }
+
+  Widget buildServiceWidget(
+    String imageName,
+    String title,
+    String category,
+    String role,
+    String rating,
+  ) {
+    return SizedBox(
+      width: 135,
+      height: 205,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 29,
+            top: 15,
+            child: Image.asset('assets/$imageName'),
+          ),
+          Positioned(
+            left: 24,
+            top: 102,
+            child: SizedBox(
+              width: 86,
+              height: 52,
+              child: Stack(
+                children: [
+                  Positioned(
+                    left: 8,
+                    top: 0,
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontFamily: 'Heebo',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 0,
+                    top: 21,
+                    child: Text(
+                      category,
+                      style: const TextStyle(
+                        color: Color(0xFF6F6F6F),
+                        fontSize: 11,
+                        fontFamily: 'Heebo',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 24,
+                    top: 36,
+                    child: Text(
+                      role,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Color(0xFF6F6F6F),
+                        fontSize: 11,
+                        fontFamily: 'Heebo',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 46,
+            top: 161,
+            child: SizedBox(
+              width: 43,
+              height: 17,
+              child: Stack(
+                children: [
+                  Positioned(
+                    left: 18,
+                    top: 0,
+                    child: SizedBox(
+                      width: 25,
+                      height: 17,
+                      child: Text(
+                        rating,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'Heebo',
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 0,
+                    top: 1,
+                    child: Image.asset('assets/Star.png'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 14,
+            top: 181,
+            child: SizedBox(
+              width: 107,
+              height: 17,
+              child: Stack(
+                children: [
+                  Positioned(
+                    left: 90,
+                    top: 0,
+                    child: Image.asset('assets/Shopping cart.png'),
+                  ),
+                  Positioned(
+                    left: 0,
+                    top: 0,
+                    child: Image.asset('assets/Eye.png'),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),

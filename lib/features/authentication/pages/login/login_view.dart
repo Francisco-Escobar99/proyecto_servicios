@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_movil/features/authentication/pages/profile/Customer/view_main_customer.dart';
-
+import '../profile/Customer/view_main_customer.dart';
 class LoginView extends StatefulWidget {
   @override
   _LoginViewState createState() => _LoginViewState();
@@ -132,7 +131,7 @@ class _LoginViewState extends State<LoginView> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => View_mainCustomer()),
+                          MaterialPageRoute(builder: (context) => const ViewMainCustomer()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
