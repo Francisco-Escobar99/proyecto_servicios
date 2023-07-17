@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'app_barCustomer.dart';
 import '../../login/login_welcome.dart';
+import '../Customer/date.dart';
+
 class ViewMainCustomer extends StatelessWidget {
   const ViewMainCustomer({Key? key}) : super(key: key);
 
@@ -95,6 +97,15 @@ class ViewMainCustomer extends StatelessWidget {
             },
             child: const Text('Cerrar'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const DateHour()),
+              );
+            },
+            child: const Text('date'),
+          ),
         ],
       ),
     );
@@ -154,6 +165,7 @@ class ViewMainCustomer extends StatelessWidget {
                     top: 0,
                     child: Text(
                       title,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 14,
@@ -163,10 +175,10 @@ class ViewMainCustomer extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    left: 0,
                     top: 21,
                     child: Text(
                       category,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Color(0xFF6F6F6F),
                         fontSize: 11,
@@ -211,7 +223,7 @@ class ViewMainCustomer extends StatelessWidget {
                         rating,
                         style: const TextStyle(
                           color: Colors.black,
-                          fontSize: 14,
+                          fontSize: 16,
                           fontFamily: 'Heebo',
                           fontWeight: FontWeight.w800,
                         ),
@@ -219,31 +231,7 @@ class ViewMainCustomer extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    left: 0,
-                    top: 1,
                     child: Image.asset('assets/Star.png'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            left: 14,
-            top: 181,
-            child: SizedBox(
-              width: 107,
-              height: 17,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 90,
-                    top: 0,
-                    child: Image.asset('assets/Shopping cart.png'),
-                  ),
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    child: Image.asset('assets/Eye.png'),
                   ),
                 ],
               ),

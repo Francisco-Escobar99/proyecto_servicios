@@ -18,7 +18,6 @@ class _DateHourState extends State<DateHour> {
 
   TimeOfDay _selectedTime = TimeOfDay.now();
 
-
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -36,18 +35,17 @@ class _DateHourState extends State<DateHour> {
   }
 
   Future<void> _selectTime(BuildContext context) async {
-  final TimeOfDay? picked = await showTimePicker(
-    context: context,
-    initialTime: _selectedTime,
-  );
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: _selectedTime,
+    );
 
-  if (picked != null && picked != _selectedTime) {
-    setState(() {
-      _selectedTime = picked;
-    });
+    if (picked != null && picked != _selectedTime) {
+      setState(() {
+        _selectedTime = picked;
+      });
+    }
   }
-}
-
 
   @override
   void dispose() {
@@ -116,29 +114,29 @@ class _DateHourState extends State<DateHour> {
               ),
             ),
             Padding(
-  padding: const EdgeInsets.only(top: 20.0, right: 30.0, left: 30.0),
-  child: SizedBox(
-    height: 40,
-    child: ElevatedButton(
-      onPressed: () => _selectTime(context),
-      style: ElevatedButton.styleFrom(
-        primary: const Color(0xFF486966),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-      ),
-      child: const Text(
-        'Seleccionar hora',
-        style: TextStyle(
-          fontSize: 18,
-          fontFamily: 'istok_web',
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    ),
-  ),
-),
-
+              padding:
+                  const EdgeInsets.only(top: 20.0, right: 30.0, left: 30.0),
+              child: SizedBox(
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () => _selectTime(context),
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF486966),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text(
+                    'Seleccionar hora',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'istok_web',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
