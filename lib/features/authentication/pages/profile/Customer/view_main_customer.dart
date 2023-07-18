@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_movil/features/authentication/pages/profile/Provider_/business_view.dart';
 import 'app_barCustomer.dart';
 import '../../login/login_welcome.dart';
 import '../Customer/date.dart';
@@ -59,18 +60,20 @@ class ViewMainCustomer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(44),
             child: Row(
               children: [
-                buildServiceWidget(
+                buildServiceButton(
+                  context,
                   'User.png',
                   'Barber Alfa',
                   'Cuidado personal',
                   'Estilista',
                   '4.2',
                 ),
-                const SizedBox(width: 80),
-                buildServiceWidget(
+                const SizedBox(width: 30),
+                buildServiceButton(
+                  context,
                   'User2.png',
                   'C. D. Bere',
                   'Salud',
@@ -127,117 +130,127 @@ class ViewMainCustomer extends StatelessWidget {
     );
   }
 
-  Widget buildServiceWidget(
+  Widget buildServiceButton(
+    BuildContext context,
     String imageName,
     String title,
     String category,
     String role,
     String rating,
   ) {
-    return SizedBox(
-      width: 135,
-      height: 205,
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
+    return InkWell(
+      onTap: () {
+        // Navegar a la otra vista aquí
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BusinessView()),
+        );
+      },
+      child: SizedBox(
+        width: 135,
+        height: 205,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
             ),
-          ),
-          Positioned(
-            left: 29,
-            top: 15,
-            child: Image.asset('assets/$imageName'),
-          ),
-          Positioned(
-            left: 24,
-            top: 102,
-            child: SizedBox(
-              width: 86,
-              height: 52,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 8,
-                    top: 0,
-                    child: Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontFamily: 'Heebo',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 21,
-                    child: Text(
-                      category,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Color(0xFF6F6F6F),
-                        fontSize: 11,
-                        fontFamily: 'Heebo',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 24,
-                    top: 36,
-                    child: Text(
-                      role,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Color(0xFF6F6F6F),
-                        fontSize: 11,
-                        fontFamily: 'Heebo',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            Positioned(
+              left: 29,
+              top: 15,
+              child: Image.asset('assets/$imageName'),
             ),
-          ),
-          Positioned(
-            left: 46,
-            top: 161,
-            child: SizedBox(
-              width: 43,
-              height: 17,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 18,
-                    top: 0,
-                    child: SizedBox(
-                      width: 25,
-                      height: 17,
+            Positioned(
+              left: 24,
+              top: 102,
+              child: SizedBox(
+                width: 86,
+                height: 52,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 8,
+                      top: 0,
                       child: Text(
-                        rating,
+                        title,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Colors.black,
-                          fontSize: 16,
+                          fontSize: 14,
                           fontFamily: 'Heebo',
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    child: Image.asset('assets/Star.png'),
-                  ),
-                ],
+                    Positioned(
+                      top: 21,
+                      child: Text(
+                        category,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Color(0xFF6F6F6F),
+                          fontSize: 11,
+                          fontFamily: 'Heebo',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 24,
+                      top: 36,
+                      child: Text(
+                        role,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Color(0xFF6F6F6F),
+                          fontSize: 11,
+                          fontFamily: 'Heebo',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+            Positioned(
+              left: 46,
+              top: 161,
+              child: SizedBox(
+                width: 43,
+                height: 17,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 18,
+                      top: 0,
+                      child: SizedBox(
+                        width: 25,
+                        height: 17,
+                        child: Text(
+                          rating,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Heebo',
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      child: Image.asset('assets/Star.png'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

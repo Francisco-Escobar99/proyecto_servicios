@@ -60,9 +60,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
       flexibleSpace: Align(
         alignment: Alignment.center,
         child: SizedBox(
-          width: 140,
+          width: 120,
           child: Padding(
-            padding: const EdgeInsets.only(top: 40),
+            padding: const EdgeInsets.only(top: 25),
             child: Image.asset(
               'assets/logoL.png',
               fit: BoxFit.cover,
