@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_movil/features/authentication/domain/usecases/login_usecase.dart';
 import '../login/login_resgisterBase.dart';
-import 'login_view.dart';
+import '../login/login_view.dart';
 
 class LoginWelcome extends StatelessWidget {
+  const LoginWelcome({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +26,7 @@ class LoginWelcome extends StatelessWidget {
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginView()),
-                );
+                Navigator.pushNamed(context, '/loginView');
               },
               // ignore: sort_child_properties_last
               child: const Text(
@@ -52,7 +52,7 @@ class LoginWelcome extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const RegisterCustomer()),
+                      builder: (context) => const RegisterBase()),
                 );
               },
               // ignore: sort_child_properties_last

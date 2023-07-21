@@ -3,14 +3,14 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:dio/dio.dart';
 import 'login_selectRole.dart';
 
-class RegisterCustomer extends StatefulWidget {
-  const RegisterCustomer({Key? key}) : super(key: key);
+class RegisterBase extends StatefulWidget {
+  const RegisterBase({Key? key}) : super(key: key);
 
   @override
-  _RegisterCustomerState createState() => _RegisterCustomerState();
+  _RegisterBaseState createState() => _RegisterBaseState();
 }
 
-class _RegisterCustomerState extends State<RegisterCustomer> {
+class _RegisterBaseState extends State<RegisterBase> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
