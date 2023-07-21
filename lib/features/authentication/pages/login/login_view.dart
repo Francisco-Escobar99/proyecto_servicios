@@ -1,13 +1,13 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../../data/repositories/auth_data_repository.dart';
 import '../profile/Customer/view_main_customer.dart';
+import '../../domain/entities/user.dart';
+import '../../domain/usecases/login_usecase.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginViewState createState() => _LoginViewState();
 }
 
@@ -25,64 +25,48 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Future<void> _login() async {
-    final dio = Dio();
-
-    // URL de tu endpoint para iniciar sesión
-    const String loginUrl =
-        'https://spokda7of4.execute-api.us-east-1.amazonaws.com/auth-services/auth/login';
-
     setState(() {
       _isLoading = true;
     });
 
-    try {
-      final response = await dio.post(
-        loginUrl,
-        data: {
-          'email': _emailController.text,
-          'password': _passwordController.text,
-        },
+    final user = User(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+
+    // Dependencia inyectada para el repositorio
+    final authRepository = AuthDataRepository();
+
+    // Dependencia inyectada para el caso de uso
+    final loginUseCase = LoginUseCase(authRepository);
+
+    final loginSuccessful = await loginUseCase.execute(user);
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (loginSuccessful) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ViewMainCustomer()),
       );
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      // Verificar aquí la respuesta del servidor y realizar acciones en consecuencia
-
-      // Por ejemplo, si el inicio de sesión es exitoso, navegamos a la pantalla principal del usuario
-      if (response.statusCode == 200) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const ViewMainCustomer()),
+    } else {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Error de inicio de sesión'),
+            content:
+                const Text('Credenciales inválidas. Inténtalo de nuevo.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Aceptar'),
+              ),
+            ],
+          ),
         );
-      } else {
-        // Mostrar un mensaje de error o realizar otras acciones
-        // Por ejemplo, mostrar un diálogo de error
-        if (mounted) {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: const Text('Error de inicio de sesión'),
-              content:
-                  const Text('Credenciales inválidas. Inténtalo de nuevo.'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Aceptar'),
-                ),
-              ],
-            ),
-          );
-        }
-      }
-    } catch (error) {
-      setState(() {
-        _isLoading = false;
-      });
-      // Manejo de errores, muestra una notificación o mensaje al usuario
-      if (kDebugMode) {
-        print('Error al realizar la petición POST: $error');
       }
     }
   }
@@ -207,8 +191,7 @@ class _LoginViewState extends State<LoginView> {
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        primary: const Color(0xFF3B3936),
+                        ), backgroundColor: const Color(0xFF3B3936),
                       ),
                       child: _isLoading
                           ? const CircularProgressIndicator(

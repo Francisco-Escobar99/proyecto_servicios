@@ -144,32 +144,7 @@ class _RegisterCustomerState extends State<RegisterCustomer> {
                       ),
                     ),
                   ),
-                  SizedBox(height: _responsiveHeight(context, 0.02)),
-                  TextFormField(
-                    autovalidateMode: AutovalidateMode.disabled,
-                    decoration: InputDecoration(
-                      hintText: 'Numero de telefono',
-                      fillColor: HexColor('#FFFFFF'),
-                      filled: true,
-                      hintStyle: TextStyle(
-                        color: const Color(0xFF3B3936),
-                        fontSize: _responsiveTextSize(context, 18),
-                        fontWeight: FontWeight.bold,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: HexColor('#FFFFFF')),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(color: HexColor('#FFFFFF')),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: const BorderSide(color: Colors.transparent),
-                      ),
-                    ),
-                  ),
+                  
                   SizedBox(height: _responsiveHeight(context, 0.06)),
                   TextFormField(
                     obscureText: true, // Ocultar/ver contraseña
