@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/repositories/auth_data_repository.dart';
 import '../profile/Customer/view_main_customer.dart';
-import '../../domain/entities/user.dart';
+import '../../domain/entities/user_login.dart';
 import '../../domain/usecases/login_usecase.dart';
 
 class LoginView extends StatefulWidget {
@@ -33,13 +33,8 @@ class _LoginViewState extends State<LoginView> {
       email: _emailController.text,
       password: _passwordController.text,
     );
-
-    // Dependencia inyectada para el repositorio
     final authRepository = AuthDataRepository();
-
-    // Dependencia inyectada para el caso de uso
     final loginUseCase = LoginUseCase(authRepository);
-
     final loginSuccessful = await loginUseCase.execute(user);
 
     setState(() {
@@ -57,8 +52,7 @@ class _LoginViewState extends State<LoginView> {
           context: context,
           builder: (context) => AlertDialog(
             title: const Text('Error de inicio de sesión'),
-            content:
-                const Text('Credenciales inválidas. Inténtalo de nuevo.'),
+            content: const Text('Credenciales inválidas. Inténtalo de nuevo.'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
@@ -104,6 +98,7 @@ class _LoginViewState extends State<LoginView> {
                     height: constraints.maxHeight * 0.3,
                   ),
                 ),
+                const SizedBox(height: 45.0),
                 Positioned(
                   left: 20,
                   top: constraints.maxHeight * 0.46,
@@ -191,7 +186,8 @@ class _LoginViewState extends State<LoginView> {
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
-                        ), backgroundColor: const Color(0xFF3B3936),
+                        ),
+                        backgroundColor: const Color(0xFF3B3936),
                       ),
                       child: _isLoading
                           ? const CircularProgressIndicator(

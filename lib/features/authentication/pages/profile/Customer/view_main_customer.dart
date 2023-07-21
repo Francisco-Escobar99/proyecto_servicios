@@ -84,32 +84,6 @@ class ViewMainCustomer extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 165),
-            const Text(
-              'Vista de servicios',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginWelcome()),
-                );
-              },
-              child: const Text('Cerrar'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const DateHour()),
-                );
-              },
-              child: const Text('date'),
-            ),
           ],
         ),
       ),

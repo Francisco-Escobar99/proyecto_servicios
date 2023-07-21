@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:dio/dio.dart';
+import '../../data/repositories/auth_register_respository.dart';
+import '../../domain/entities/user_register.dart';
+import '../../domain/usecases/register_usecase.dart';
 import 'login_selectRole.dart';
 
 class RegisterBase extends StatefulWidget {
@@ -17,6 +20,7 @@ class _RegisterBaseState extends State<RegisterBase> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _repeatPasswordController =
       TextEditingController();
+  final TextEditingController _typeIdController = TextEditingController();
   late bool _isPasswordVisible = false;
 
   @override
@@ -26,9 +30,12 @@ class _RegisterBaseState extends State<RegisterBase> {
     _lastnameController.dispose();
     _passwordController.dispose();
     _repeatPasswordController.dispose();
+    _typeIdController.dispose();
     super.dispose();
   }
 
+  String? _selectedRole;
+  final List<String> _roles = ['cliente', 'proveedor'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,7 +160,62 @@ class _RegisterBaseState extends State<RegisterBase> {
                       ),
                     ),
                   ),
-                  SizedBox(height: _responsiveHeight(context, 0.06)),
+                  SizedBox(height: _responsiveHeight(context, 0.01)),
+                  //seleccion de rol
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      _responsiveWidth(context, 0.15),
+                      _responsiveHeight(context, 0.03),
+                      _responsiveWidth(context, 0.1),
+                      0,
+                    ),
+                    child: Text(
+                      'Cuentanos, ¿Quién quieres ser?',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: _responsiveTextSize(context, 18),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: _responsiveHeight(context, 0.02)),
+                  DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      fillColor: HexColor('#FFFFFF'),
+                      filled: true,
+                      hintText: 'Seleccione un rol',
+                      hintStyle: TextStyle(
+                        color: const Color(0xFF3B3936),
+                        fontSize: _responsiveTextSize(context, 18),
+                        fontWeight: FontWeight.bold,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: HexColor('#FFFFFF')),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(color: HexColor('#FFFFFF')),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: const BorderSide(color: Colors.transparent),
+                      ),
+                    ),
+                    value: _selectedRole,
+                    items: _roles.map((role) {
+                      return DropdownMenuItem<String>(
+                        value: role,
+                        child: Text(role),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedRole = value;
+                      });
+                    },
+                  ),
+                  SizedBox(height: _responsiveHeight(context, 0.08)),
                   TextFormField(
                     obscureText: !_isPasswordVisible,
                     controller: _passwordController,
@@ -235,9 +297,9 @@ class _RegisterBaseState extends State<RegisterBase> {
                       ),
                     ),
                   ),
-                  SizedBox(height: _responsiveHeight(context, 0.04)),
+                  SizedBox(height: _responsiveHeight(context, 0.01)),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 90),
+                    padding: const EdgeInsets.only(left: 10, top: 40),
                     child: ElevatedButton(
                       onPressed: () {
                         _registerUser();
@@ -285,41 +347,40 @@ class _RegisterBaseState extends State<RegisterBase> {
 
   // Método para realizar la petición POST
   void _registerUser() async {
-    String name =
-        _nameController.text; // Obtén el valor del nombre del TextFormField
-    String lastName = _lastnameController
-        .text; // Obtén el valor del apellido del TextFormField
-    String email =
-        _emailController.text; // Obtén el valor del email del TextFormField
+    String name = _nameController.text;
+    String lastName = _lastnameController.text;
+    String email = _emailController.text;
     String password = _passwordController.text;
     String repeatPassword = _repeatPasswordController.text;
+    //String type_users_id = _typeIdController.text;
 
-    if (password == repeatPassword) {
-      // Las contraseñas son iguales, realiza la petición POST
-      try {
-        var response = await Dio().post(
-            'https://spokda7of4.execute-api.us-east-1.amazonaws.com/auth-services/auth/register',
-            data: {
-              'email': email,
-              'password': password,
-              'name': name,
-              'last_name': lastName,
-              'type_users_id': 2,
-            });
-            
-        // Aquí puedes manejar la respuesta del servidor si es necesario
-        print('Respuesta del servidor: ${response.data}');
-        print('Respuesta del servidor: ${response.statusCode}');
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Login_selectRole()),
-        );
-      } catch (e) {
-        // Manejo de errores en la petición
-        print('Error en la petición: $e');
-      }
-    } else {
-      // Las contraseñas no son iguales, muestra un mensaje de error
+    if (name.isEmpty ||
+        lastName.isEmpty ||
+        email.isEmpty ||
+        password.isEmpty ||
+        repeatPassword.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Error'),
+            content: const Text(
+                'Todos los campos son obligatorios. Por favor, ingresa la información requerida.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
+    if (password != repeatPassword) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -336,6 +397,48 @@ class _RegisterBaseState extends State<RegisterBase> {
             ],
           );
         },
+      );
+      return;
+    }
+
+    // Las contraseñas son iguales, realiza la petición POST
+    User user = User(
+      name: name,
+      lastName: lastName,
+      email: email,
+      password: password,
+      type_users_id: _selectedRole == 'cliente' ? '1' : '2',
+    );
+
+    // Utilizamos el caso de uso para registrar al usuario
+    bool registrationSuccess =
+        await RegisterUserUseCase(RegisterDataRepository()).execute(user);
+
+    if (registrationSuccess) {
+      Fluttertoast.showToast(
+        msg: 'Tu cuenta se ha creado exitosamente',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      // Navegar a la siguiente pantalla
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Login_selectRole()),
+      );
+    } else {
+      // Manejo de errores en la petición
+      Fluttertoast.showToast(
+        msg: 'Ha ocurrido un error, vuelva a intentarlo',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: const Color.fromARGB(255, 175, 76, 76),
+        textColor: Colors.white,
+        fontSize: 16.0,
       );
     }
   }

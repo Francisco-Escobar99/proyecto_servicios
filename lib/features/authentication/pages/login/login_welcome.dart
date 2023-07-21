@@ -26,17 +26,11 @@ class LoginWelcome extends StatelessWidget {
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/loginView');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginView()),
+                );
               },
-              // ignore: sort_child_properties_last
-              child: const Text(
-                'Iniciar sesión',
-                style: TextStyle(
-                  color: Color(0xFFFFFFFF),
-                  fontFamily: 'IstokWeb',
-                  fontSize: 20.0,
-                ),
-              ),
               style: ElevatedButton.styleFrom(
                 // ignore: deprecated_member_use
                 primary: const Color(0xFF3B3936), // Color de fondo
@@ -45,14 +39,21 @@ class LoginWelcome extends StatelessWidget {
                 ),
                 minimumSize: const Size(321, 43),
               ),
+              child: const Text(
+                'Iniciar sesión',
+                style: TextStyle(
+                  color: Color(0xFFFFFFFF),
+                  fontFamily: 'IstokWeb',
+                  fontSize: 20.0,
+                ),
+              ),
             ),
             const SizedBox(height: 45.0), // Espacio de 45 entre los botones
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const RegisterBase()),
+                  MaterialPageRoute(builder: (context) => const RegisterBase()),
                 );
               },
               // ignore: sort_child_properties_last

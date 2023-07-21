@@ -119,15 +119,7 @@ class _ViewMainState extends State<ViewMain> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginWelcome()),
-              );
-            },
-            child: const Text('Cerrar'),
-          ),
+
         ],
       ),
     );

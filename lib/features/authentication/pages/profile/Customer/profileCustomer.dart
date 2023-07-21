@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../../login/login_welcome.dart';
 import 'app_barCustomer.dart';
 
 class CustomerProfile extends StatelessWidget {
@@ -14,45 +14,53 @@ class CustomerProfile extends StatelessWidget {
         child: ListView(
           children: [
             ListTile(
-              title: const Text('• Cuidado personal',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'IstokWeb',
-                    fontSize: 16.0,
-                  )),
+              title: const Text(
+                '• Cuidado personal',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'IstokWeb',
+                  fontSize: 16.0,
+                ),
+              ),
               onTap: () {
                 // Acción al seleccionar 'Cuidado personal'
               },
             ),
             ListTile(
-              title: const Text('• Salud',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'IstokWeb',
-                    fontSize: 16.0,
-                  )),
+              title: const Text(
+                '• Salud',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'IstokWeb',
+                  fontSize: 16.0,
+                ),
+              ),
               onTap: () {
                 // Acción al seleccionar 'Salud'
               },
             ),
             ListTile(
-              title: const Text('• Servicio vehicular',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'IstokWeb',
-                    fontSize: 16.0,
-                  )),
+              title: const Text(
+                '• Servicio vehicular',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'IstokWeb',
+                  fontSize: 16.0,
+                ),
+              ),
               onTap: () {
                 // Acción al seleccionar 'Servicio vehicular'
               },
             ),
             ListTile(
-              title: const Text('• Asistencia del hogar',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'IstokWeb',
-                    fontSize: 16.0,
-                  )),
+              title: const Text(
+                '• Asistencia del hogar',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'IstokWeb',
+                  fontSize: 16.0,
+                ),
+              ),
               onTap: () {
                 // Acción al seleccionar 'Asistencia del hogar'
               },
@@ -127,7 +135,7 @@ class CustomerProfile extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 25),
-                      Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Padding(
@@ -146,7 +154,7 @@ class CustomerProfile extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 25),
-                      Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Padding(
@@ -165,13 +173,13 @@ class CustomerProfile extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 25),
-                      Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.only(left: 110.0),
                           child: Text(
-                            "Cambiar direccion",
+                            "Cambiar dirección",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontFamily: 'IstokWeb',
@@ -183,6 +191,7 @@ class CustomerProfile extends StatelessWidget {
                         Icon(Icons.lock),
                       ],
                     ),
+                    const SizedBox(height: 45),
                   ],
                 ),
               ),
@@ -190,6 +199,21 @@ class CustomerProfile extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        label: const Text(
+          "Salir",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'IstokWeb',
+            fontSize: 18.0,
+          ),
+        ),
+        icon: const Icon(Icons.logout),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
