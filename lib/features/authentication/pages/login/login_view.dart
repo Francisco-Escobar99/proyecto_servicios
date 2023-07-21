@@ -1,19 +1,90 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../profile/Customer/view_main_customer.dart';
+
 class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _LoginViewState createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
-  // ignore: prefer_final_fields
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
+  bool _isLoading = false;
 
   @override
   void dispose() {
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  Future<void> _login() async {
+    final dio = Dio();
+
+    // URL de tu endpoint para iniciar sesión
+    const String loginUrl =
+        'https://spokda7of4.execute-api.us-east-1.amazonaws.com/auth-services/auth/login';
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final response = await dio.post(
+        loginUrl,
+        data: {
+          'email': _emailController.text,
+          'password': _passwordController.text,
+        },
+      );
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      // Verificar aquí la respuesta del servidor y realizar acciones en consecuencia
+
+      // Por ejemplo, si el inicio de sesión es exitoso, navegamos a la pantalla principal del usuario
+      if (response.statusCode == 200) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ViewMainCustomer()),
+        );
+      } else {
+        // Mostrar un mensaje de error o realizar otras acciones
+        // Por ejemplo, mostrar un diálogo de error
+        if (mounted) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Error de inicio de sesión'),
+              content:
+                  const Text('Credenciales inválidas. Inténtalo de nuevo.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Aceptar'),
+                ),
+              ],
+            ),
+          );
+        }
+      }
+    } catch (error) {
+      setState(() {
+        _isLoading = false;
+      });
+      // Manejo de errores, muestra una notificación o mensaje al usuario
+      if (kDebugMode) {
+        print('Error al realizar la petición POST: $error');
+      }
+    }
   }
 
   @override
@@ -56,16 +127,16 @@ class _LoginViewState extends State<LoginView> {
                     height: 52,
                     width: constraints.maxWidth - 40,
                     child: TextField(
-                      textAlign:
-                          TextAlign.start, // Centra el texto a la izquierda
+                      controller: _emailController,
+                      textAlign: TextAlign.start,
                       decoration: InputDecoration(
                         hintText: 'Email',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
-                          borderSide: BorderSide.none, // Sin borde
+                          borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: const Color(0xFFFFFFFF), // Fondo blanco
+                        fillColor: const Color(0xFFFFFFFF),
                         hintStyle: const TextStyle(
                           color: Color(0xFF3B3936),
                           fontFamily: 'Istok Web',
@@ -73,7 +144,9 @@ class _LoginViewState extends State<LoginView> {
                           fontWeight: FontWeight.bold,
                         ),
                         contentPadding: const EdgeInsets.symmetric(
-                            vertical: 14, horizontal: 20),
+                          vertical: 14,
+                          horizontal: 20,
+                        ),
                       ),
                     ),
                   ),
@@ -88,16 +161,15 @@ class _LoginViewState extends State<LoginView> {
                     child: TextField(
                       controller: _passwordController,
                       textAlign: TextAlign.start,
-                      obscureText:
-                          !_isPasswordVisible, // Oculta o muestra el texto de la contraseña
+                      obscureText: !_isPasswordVisible,
                       decoration: InputDecoration(
                         hintText: 'Contraseña',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
-                          borderSide: BorderSide.none, // Sin borde
+                          borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: const Color(0xFFFFFFFF), // Fondo blanco
+                        fillColor: const Color(0xFFFFFFFF),
                         hintStyle: const TextStyle(
                           color: Color(0xFF3B3936),
                           fontFamily: 'Istok Web',
@@ -105,12 +177,15 @@ class _LoginViewState extends State<LoginView> {
                           fontWeight: FontWeight.bold,
                         ),
                         contentPadding: const EdgeInsets.symmetric(
-                            vertical: 14, horizontal: 20),
+                          vertical: 14,
+                          horizontal: 20,
+                        ),
                         suffixIcon: IconButton(
-                          icon: Icon(_isPasswordVisible
-                              ? Icons.visibility_off
-                              : Icons
-                                  .visibility), // Cambia el icono según la visibilidad de la contraseña
+                          icon: Icon(
+                            _isPasswordVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
                           onPressed: () {
                             setState(() {
                               _isPasswordVisible = !_isPasswordVisible;
@@ -128,29 +203,28 @@ class _LoginViewState extends State<LoginView> {
                     height: 43,
                     width: constraints.maxWidth - 40,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const ViewMainCustomer()),
-                        );
-                      },
+                      onPressed: _isLoading ? null : _login,
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
                         ),
-                        // ignore: deprecated_member_use
-                        primary:
-                            const Color(0xFF3B3936), // Color de fondo del botón
+                        primary: const Color(0xFF3B3936),
                       ),
-                      child: const Text(
-                        'Iniciar sesión',
-                        style: TextStyle(
-                          fontFamily: 'Istok Web',
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFFFFFFF), // Color de letra del botón
-                        ),
-                      ),
+                      child: _isLoading
+                          ? const CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.white,
+                              ),
+                            )
+                          : const Text(
+                              'Iniciar sesión',
+                              style: TextStyle(
+                                fontFamily: 'Istok Web',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFFFFFFF),
+                              ),
+                            ),
                     ),
                   ),
                 ),

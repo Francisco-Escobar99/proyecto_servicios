@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
+import 'package:dio/dio.dart';
 import 'login_selectRole.dart';
 
-class RegisterCustomer extends StatelessWidget {
+class RegisterCustomer extends StatefulWidget {
   const RegisterCustomer({Key? key}) : super(key: key);
+
+  @override
+  _RegisterCustomerState createState() => _RegisterCustomerState();
+}
+
+class _RegisterCustomerState extends State<RegisterCustomer> {
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _repeatPasswordController =
+      TextEditingController();
+  final bool _isPasswordVisible = false;
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _repeatPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +240,8 @@ class RegisterCustomer extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Login_selectRole()),
+                          MaterialPageRoute(
+                              builder: (context) => Login_selectRole()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -273,4 +291,5 @@ class RegisterCustomer extends StatelessWidget {
   double _responsiveTextSize(BuildContext context, double size) {
     return size * MediaQuery.of(context).textScaleFactor;
   }
+  // ... Resto del código de _RegisterCustomerState
 }
