@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_movil/features/authentication/pages/profile/Provider_/business_view.dart';
 import 'app_barCustomer.dart';
-import '../../login/login_welcome.dart';
-import '../Customer/date.dart';
 
 class ViewMainCustomer extends StatelessWidget {
   const ViewMainCustomer({Key? key}) : super(key: key);

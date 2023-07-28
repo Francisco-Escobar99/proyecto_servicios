@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../login/login_welcome.dart';
 import 'app_barCustomer.dart';
 
 class CustomerProfile extends StatelessWidget {

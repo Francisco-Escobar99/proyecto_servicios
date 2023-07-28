@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../login/login_welcome.dart';
 import 'app_barProvider.dart';
 
 class ViewMain extends StatefulWidget {
@@ -8,7 +7,7 @@ class ViewMain extends StatefulWidget {
 }
 
 class _ViewMainState extends State<ViewMain> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {

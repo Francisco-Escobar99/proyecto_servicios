@@ -12,7 +12,6 @@ class RegisterProvider extends StatefulWidget {
 }
 
 class _RegisterProviderState extends State<RegisterProvider> {
-  final bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {

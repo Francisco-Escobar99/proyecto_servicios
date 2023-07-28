@@ -1,21 +1,20 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
-import '../../data/repositories/auth_data_repository.dart';
-import '../profile/Customer/view_main_customer.dart';
-import '../../domain/entities/user_login.dart';
-import '../../domain/usecases/login_usecase.dart';
+import 'package:proyecto_movil/features/authentication/pages/profile/Customer/view_main_customer.dart';
+import 'package:provider/provider.dart';
+import 'package:proyecto_movil/features/authentication/pages/profile/Provider_/view_main_provider.dart';
+import '../user_provider.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
-
   @override
   _LoginViewState createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
-  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -24,49 +23,11 @@ class _LoginViewState extends State<LoginView> {
     super.dispose();
   }
 
-  Future<void> _login() async {
-    setState(() {
-      _isLoading = true;
-    });
-
-    final user = User(
-      email: _emailController.text,
-      password: _passwordController.text,
-    );
-    final authRepository = AuthDataRepository();
-    final loginUseCase = LoginUseCase(authRepository);
-    final loginSuccessful = await loginUseCase.execute(user);
-
-    setState(() {
-      _isLoading = false;
-    });
-
-    if (loginSuccessful) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ViewMainCustomer()),
-      );
-    } else {
-      if (mounted) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Error de inicio de sesión'),
-            content: const Text('Credenciales inválidas. Inténtalo de nuevo.'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Aceptar'),
-              ),
-            ],
-          ),
-        );
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    // Obtener el UserProvider mediante el Provider.of
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -98,7 +59,6 @@ class _LoginViewState extends State<LoginView> {
                     height: constraints.maxHeight * 0.3,
                   ),
                 ),
-                const SizedBox(height: 45.0),
                 Positioned(
                   left: 20,
                   top: constraints.maxHeight * 0.46,
@@ -109,7 +69,7 @@ class _LoginViewState extends State<LoginView> {
                       controller: _emailController,
                       textAlign: TextAlign.start,
                       decoration: InputDecoration(
-                        hintText: 'Email',
+                        hintText: 'Usuario',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
                           borderSide: BorderSide.none,
@@ -123,9 +83,7 @@ class _LoginViewState extends State<LoginView> {
                           fontWeight: FontWeight.bold,
                         ),
                         contentPadding: const EdgeInsets.symmetric(
-                          vertical: 14,
-                          horizontal: 20,
-                        ),
+                            vertical: 14, horizontal: 20),
                       ),
                     ),
                   ),
@@ -156,15 +114,11 @@ class _LoginViewState extends State<LoginView> {
                           fontWeight: FontWeight.bold,
                         ),
                         contentPadding: const EdgeInsets.symmetric(
-                          vertical: 14,
-                          horizontal: 20,
-                        ),
+                            vertical: 14, horizontal: 20),
                         suffixIcon: IconButton(
-                          icon: Icon(
-                            _isPasswordVisible
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
+                          icon: Icon(_isPasswordVisible
+                              ? Icons.visibility_off
+                              : Icons.visibility),
                           onPressed: () {
                             setState(() {
                               _isPasswordVisible = !_isPasswordVisible;
@@ -182,28 +136,24 @@ class _LoginViewState extends State<LoginView> {
                     height: 43,
                     width: constraints.maxWidth - 40,
                     child: ElevatedButton(
-                      onPressed: _isLoading ? null : _login,
+                      onPressed: () {
+                        _loginUser(userProvider);
+                      },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                         backgroundColor: const Color(0xFF3B3936),
                       ),
-                      child: _isLoading
-                          ? const CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                Colors.white,
-                              ),
-                            )
-                          : const Text(
-                              'Iniciar sesión',
-                              style: TextStyle(
-                                fontFamily: 'Istok Web',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFFFFFFFF),
-                              ),
-                            ),
+                      child: const Text(
+                        'Iniciar sesión',
+                        style: TextStyle(
+                          fontFamily: 'Istok Web',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFFFFFFF),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -213,5 +163,32 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
+  }
+  void _loginUser(UserProvider userProvider) async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+    await userProvider.loginUser(email, password);
+    if (userProvider.isLoggedIn) {
+      int userType = userProvider.user!.userType;
+      int userId = userProvider.user!.id;
+      print(userType);
+      print(userId);
+      print(userProvider.isLoggedIn);
+      if (userType == 1) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ViewMainCustomer(),
+          ),
+        );
+      } else if (userType == 2) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ViewMain(),
+          ),
+        );
+      }
+    }
   }
 }

@@ -23,7 +23,7 @@ class _provider_appbarState extends State<provider_appbar> {
     if (_isProfileView) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ProviderProfile()),
+        MaterialPageRoute(builder: (context) => Provider_Profile()),
       ).then((value) => _toggleView());
     } else {
       Navigator.push(

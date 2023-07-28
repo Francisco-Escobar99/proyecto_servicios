@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto_movil/features/authentication/domain/usecases/login_usecase.dart';
 import '../login/login_resgisterBase.dart';
 import '../login/login_view.dart';
 
@@ -28,7 +27,7 @@ class LoginWelcome extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginView()),
+                  MaterialPageRoute(builder: (context) => LoginView()),
                 );
               },
               style: ElevatedButton.styleFrom(
